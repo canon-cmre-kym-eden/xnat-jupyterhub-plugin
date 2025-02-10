@@ -72,7 +72,7 @@ XNAT.compute.computeEnvironmentConfigs = getObject(XNAT.compute.computeEnvironme
                                                             projectId = XNAT.data.context.projectID,
                                                             eventTrackingId = generateEventTrackingId()) {
         console.debug(`jupyterhub-servers.js: XNAT.plugin.jupyterhub.servers.startServerForProject`);
-        startServer(username, eventTrackingId, xsiType, itemId, projectId, projectId, eventTrackingId)
+        startServer(username, projectId, xsiType, itemId, projectId, projectId, eventTrackingId)
     }
 
     XNAT.plugin.jupyterhub.servers.startDashboardForProject = function(username = window.username,
@@ -81,7 +81,7 @@ XNAT.compute.computeEnvironmentConfigs = getObject(XNAT.compute.computeEnvironme
                                                                        projectId = XNAT.data.context.projectID,
                                                                        eventTrackingId = generateEventTrackingId()) {
         console.debug(`jupyterhub-servers.js: XNAT.plugin.jupyterhub.servers.startDashboardForProject`);
-        startDashboard(username, eventTrackingId, xsiType, itemId, projectId, projectId, eventTrackingId);
+        startDashboard(username, projectId, xsiType, itemId, projectId, projectId, eventTrackingId);
     }
 
     XNAT.plugin.jupyterhub.servers.startServerForSubject = function(username = window.username,
@@ -108,7 +108,7 @@ XNAT.compute.computeEnvironmentConfigs = getObject(XNAT.compute.computeEnvironme
                 ]
             });
         } else {
-            getSubjectLabel(itemId).then(subjectLabel => startServer(username, eventTrackingId, xsiType, itemId,
+            getSubjectLabel(itemId).then(subjectLabel => startServer(username, projectId, xsiType, itemId,
                                                                      subjectLabel, projectId, eventTrackingId))
         }
     }
@@ -138,7 +138,7 @@ XNAT.compute.computeEnvironmentConfigs = getObject(XNAT.compute.computeEnvironme
             });
         } else {
             getSubjectLabel(itemId).then(subjectLabel => {
-                startDashboard(username, eventTrackingId, xsiType, itemId, subjectLabel, projectId, eventTrackingId)
+                startDashboard(username, projectId, xsiType, itemId, subjectLabel, projectId, eventTrackingId)
             }).catch(e => {
                 console.error(`Error getting subject label: ${e}`);
             });
@@ -169,7 +169,7 @@ XNAT.compute.computeEnvironmentConfigs = getObject(XNAT.compute.computeEnvironme
                 ]
             });
         } else {
-            getExperimentLabel(itemId).then(experimentLabel => startServer(username, eventTrackingId, xsiType, itemId,
+            getExperimentLabel(itemId).then(experimentLabel => startServer(username, projectId, xsiType, itemId,
                                                                            experimentLabel, projectId, eventTrackingId))
         }
     }
@@ -199,7 +199,7 @@ XNAT.compute.computeEnvironmentConfigs = getObject(XNAT.compute.computeEnvironme
             });
         } else {
             getExperimentLabel(itemId).then(experimentLabel => {
-                startDashboard(username, eventTrackingId, xsiType, itemId, experimentLabel, projectId, eventTrackingId)
+                startDashboard(username, projectId, xsiType, itemId, experimentLabel, projectId, eventTrackingId)
             }).catch(e => {
                 console.error(`Error getting experiment label: ${e}`);
             });
@@ -209,7 +209,7 @@ XNAT.compute.computeEnvironmentConfigs = getObject(XNAT.compute.computeEnvironme
     XNAT.plugin.jupyterhub.servers.startServerForStoredSearch = function(username, servername, xsiType, itemId,
                                                                          itemLabel, projectId, eventTrackingId) {
         console.debug(`jupyterhub-servers.js: XNAT.plugin.jupyterhub.servers.startServerForStoredSearch`);
-         startServer(username, eventTrackingId, xsiType, itemId, itemLabel, projectId, eventTrackingId)
+         startServer(username, projectId, xsiType, itemId, itemLabel, projectId, eventTrackingId)
     }
 
 
